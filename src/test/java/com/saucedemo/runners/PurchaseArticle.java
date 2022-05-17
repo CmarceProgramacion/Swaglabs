@@ -6,9 +6,9 @@ import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(glue = "com.saucedemo.stepdefinitions",
-        features = "src/test/resources/features/comprar_articulo.feature",
+        features = "src/test/resources/features/purchase_article.feature",
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )
 
-public class ComprarArticulo {
+public class PurchaseArticle {
 }

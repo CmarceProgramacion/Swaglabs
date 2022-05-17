@@ -20,7 +20,7 @@ public class DataDriveExcel {
     private static final String NUMERIC = "NUMERIC";
 
     public Map<Integer, Map<Integer, String>> loadDataDrive(String fileName, Integer... sheetNumber) {
-        String filePath = "src/test/resources/data" + fileName;
+        String filePath = "src/test/resources/data/" + fileName;
 
         int columnNumber;
         int rowNumber;
@@ -45,7 +45,7 @@ public class DataDriveExcel {
                 Cell cell;
                 while (cellIterator.hasNext()) {
                     cell = cellIterator.next();
-                    CellType cellType = cell.getCellType();//getCellTypeEnum();
+                    CellType cellType = cell.getCellType();
                     String type = cellType.toString();
                     if (type.equals(NUMERIC)) {
                         long numericData = (long) cell.getNumericCellValue();

@@ -7,10 +7,10 @@ import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(glue = "com.saucedemo.stepdefinitions",
-        features = "src/test/resources/features/autenticacion_usuario.feature",
-        tags = "@Caso1",
+        features = "src/test/resources/features/user_authentication.feature",
+        tags = "@Case1",
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )
 
-public class AutenticacionUsuario {
+public class UserAuthentication {
 }
