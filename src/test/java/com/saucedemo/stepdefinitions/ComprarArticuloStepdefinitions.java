@@ -1,27 +1,19 @@
 package com.saucedemo.stepdefinitions;
 
 import com.saucedemo.tasks.AgregarArticulo;
-import com.saucedemo.tasks.IniciarSesion;
 import com.saucedemo.tasks.PagarArticulo;
-import com.saucedemo.utils.ExtraerData;
-import io.cucumber.java.en.When;
+import io.cucumber.java.en.Given;
 
-import java.util.ArrayList;
-
-import static com.saucedemo.utils.ListaAccesos.URL_EXCEL;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 
 public class ComprarArticuloStepdefinitions {
 
-    @When("Selecciona el producto agregandolo al carrito")
-    public void seleccionaElProductoAgregandoloAlCarrito() {
 
-        ExtraerData dataUsuario = new ExtraerData(URL_EXCEL.getRuta());
-        ArrayList<String> datos = dataUsuario.ObtenerData();
-
+    @Given("Selecciona el producto agregandolo al carrito de la {int} y {int}")
+    public void seleccionaElProductoAgregandoloAlCarritoDeLaY(int hoja, int fila) {
         theActorInTheSpotlight().attemptsTo(
-                AgregarArticulo.conDatos(datos.get(2)),
-                PagarArticulo.conDatos(datos.get(3), datos.get(4), datos.get(5))
+                AgregarArticulo.conDatos(hoja, fila),
+                PagarArticulo.conDatos(hoja, fila)
         );
 
     }

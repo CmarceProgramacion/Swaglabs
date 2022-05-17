@@ -1,5 +1,6 @@
 package com.saucedemo.tasks;
 
+import com.saucedemo.utils.ObtenerInformacion;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
@@ -10,26 +11,25 @@ import net.serenitybdd.screenplay.actions.Enter;
 import static com.saucedemo.userinterfaces.PagarArticulo.*;
 
 public class PagarArticulo implements Task {
-    private String name;
-    private String lastName;
-    private String codePost;
+    private int hoja;
+    private int fila;
 
-    public PagarArticulo(String name, String lastName, String codePost) {
-        this.name = name;
-        this.lastName = lastName;
-        this.codePost = codePost;
+    public PagarArticulo(int hoja, int fila) {
+        this.hoja = hoja;
+        this.fila = fila;
     }
 
-    public static Performable conDatos(String name, String lastName, String codePost) {
-        return Tasks.instrumented(PagarArticulo.class, name,lastName,codePost);
+    public static Performable conDatos(int hoja, int fila) {
+        return Tasks.instrumented(PagarArticulo.class, hoja, fila);
     }
 
     @Override
     public <T extends Actor> void performAs(T actor) {
+        ObtenerInformacion.getObtener(hoja,fila);
         actor.attemptsTo(
-                Enter.keyValues(name).into(INPUT_FIRST_NAME),
-                Enter.keyValues(lastName).into(INPUT_LAST_NAME),
-                Enter.keyValues(codePost).into(INPUT_POSTAL_CODE),
+                Enter.keyValues(ObtenerInformacion.getNombre()).into(INPUT_FIRST_NAME),
+                Enter.keyValues(ObtenerInformacion.getApellido()).into(INPUT_LAST_NAME),
+                Enter.keyValues(ObtenerInformacion.getCodigoPostal()).into(INPUT_POSTAL_CODE),
                 Click.on(BOTTON_CONTINUE),
                 Click.on(BOTTON_FINISH)
         );

@@ -4,8 +4,14 @@ Feature: Comprar producto en SWAGLABS
   Para realizar la compra de un articulo
 
   @Caso1
-  Scenario: Comprar producto
+  Scenario Outline: Comprar producto
     Given usuario ingresa a la pagina SWAGLABS
-    When Ingresa el nombre del usuario y la contrasena
-    And Selecciona el producto agregandolo al carrito
+    When Ingresa credenciales con la informacion de la <hoja> y <fila>
+    And Selecciona el producto agregandolo al carrito de la <hoja> y <fila>
     Then valida el mensaje de la pagina principal "Checkout: Complete!"
+
+    Examples:
+      | hoja | fila |
+      | 0    | 1    |
+      | 0    | 2    |
+      | 0    | 3    |
